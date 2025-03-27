@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kokoro TTS Launcher</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            line-height: 1.6;
+        }
+        h1 {
+            color: #2c3e50;
+            text-align: center;
+        }
+        .container {
+            background-color: #f9f9f9;
+            border-radius: 8px;
+            padding: 20px;
+            margin-top: 20px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        .btn {
+            display: block;
+            width: 100%;
+            padding: 12px;
+            background-color: #3498db;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            font-size: 16px;
+            cursor: pointer;
+            text-align: center;
+            text-decoration: none;
+            margin: 20px 0;
+        }
+        .btn:hover {
+            background-color: #2980b9;
+        }
+        #status {
+            margin-top: 20px;
+            padding: 10px;
+            border-radius: 4px;
+            display: none;
+        }
+        .instructions {
+            background-color: #e8f4f8;
+            padding: 15px;
+            border-radius: 4px;
+            margin-top: 20px;
+        }
+        .url-display {
+            background-color: #eee;
+            padding: 10px;
+            border-radius: 4px;
+            margin-top: 10px;
+            word-break: break-all;
+            font-family: monospace;
+        }
+    </style>
+</head>
+<body>
+    <h1>Kokoro TTS Launcher</h1>
+    
+    <div class="container">
+        <h2>Launch Kokoro TTS API</h2>
+        <p>Click the button below to launch the Kokoro TTS API in Google Colab. This will open a new browser tab.</p>
+        
+        <a href="https://colab.research.google.com/github/YOUR_GITHUB_USERNAME/Kokoro-FastAPI-Colab/blob/main/launch_kokoro.ipynb" class="btn" id="launchButton">Launch Kokoro TTS in Colab</a>
+        
+        <div class="instructions">
+            <h3>Important Steps:</h3>
+            <ol>
+                <li>After Colab opens, click on "Connect" to connect to a runtime (preferably with GPU)</li>
+                <li>Then click "Run cell" to execute the code (or press Shift+Enter)</li>
+                <li>Wait until you see "Kokoro API is now available at: [URL]" message</li>
+                <li>Copy that URL and use it as your TTS endpoint</li>
+            </ol>
+        </div>
+        
+        <h3>Using the API</h3>
+        <p>Once the API is running, you can use it with this endpoint:</p>
+        <div class="url-display" id="apiEndpoint">https://[your-cloudflare-url].trycloudflare.com/v1/audio/speech</div>
+        
+        <p>Example curl command:</p>
+        <pre class="url-display">
+curl -X POST https://[your-cloudflare-url].trycloudflare.com/v1/audio/speech \
+  -H "Content-Type: application/json" \
+  -d '{
+    "model": "kokoro",
+    "input": "Hello, this is a test of Kokoro TTS!",
+    "voice": "af_bella",
+    "response_format": "mp3"
+  }' \
+  --output test_audio.mp3
+        </pre>
+    </div>
+    
+    <div class="container">
+        <h2>Keep Colab Running</h2>
+        <p>To prevent your Colab session from disconnecting automatically, you can run this JavaScript in your browser console:</p>
+        <pre class="url-display">
+function ClickConnect() {
+  console.log("Clicked connect button");
+  document.querySelector("colab-toolbar-button#connect").click();
+}
+setInterval(ClickConnect, 60000);
+        </pre>
+    </div>
+
+    <script>
+        // Auto-update the GitHub username if available
+        document.addEventListener('DOMContentLoaded', function() {
+            // You can set your GitHub username here
+            const githubUsername = "remsky"; // Change this to your actual GitHub username
+            
+            if (githubUsername) {
+                const launchButton = document.getElementById('launchButton');
+                const newHref = launchButton.href.replace('YOUR_GITHUB_USERNAME', githubUsername);
+                launchButton.href = newHref;
+            }
+        });
+    </script>
+</body>
+</html>
