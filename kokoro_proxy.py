@@ -43,6 +43,7 @@ except ImportError:
         MANUAL_LOGIN_TIMEOUT = 120
         PREFERRED_GPU = "T4"
         USE_HEADLESS_BROWSER = False
+        USE_LOCAL_NOTEBOOK = True
 
 # Configure logging
 logging.basicConfig(
@@ -56,7 +57,12 @@ logging.basicConfig(
 logger = logging.getLogger(__name__)
 
 # Configuration
-DEFAULT_COLAB_URL = "https://colab.research.google.com/github/remsky/Kokoro-FastAPI-Colab/blob/main/launch_kokoro.ipynb"
+REMOTE_COLAB_URL = "https://colab.research.google.com/github/remsky/Kokoro-FastAPI-Colab/blob/main/launch_kokoro.ipynb"
+LOCAL_COLAB_URL = "file:///workspaces/Kokoro-FastAPI-Colab/launch_kokoro.ipynb"
+
+# Use local or remote URL based on configuration
+DEFAULT_COLAB_URL = LOCAL_COLAB_URL if hasattr(config, 'USE_LOCAL_NOTEBOOK') and config.USE_LOCAL_NOTEBOOK else REMOTE_COLAB_URL
+
 MAX_INSTANCE_AGE_HOURS = 8  # Max age of a Colab instance before creating a new one
 HISTORY_FILE = os.path.expanduser("~/.kokoro_proxy_history.json")
 KEEP_ALIVE_INTERVAL = 50 * 60  # 50 minutes in seconds

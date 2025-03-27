@@ -35,3 +35,6 @@ PREFERRED_GPU = "T4"
 # Set to True to use a headless browser (no visible window)
 # For debugging, it's better to set this to False
 USE_HEADLESS_BROWSER = False
+
+# Use the local notebook file from the GitHub directory instead of the remote URL
+USE_LOCAL_NOTEBOOK = True
