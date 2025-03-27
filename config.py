@@ -36,5 +36,6 @@ PREFERRED_GPU = "T4"
 # For debugging, it's better to set this to False
 USE_HEADLESS_BROWSER = False
 
-# Use the local notebook file from the GitHub directory instead of the remote URL
-USE_LOCAL_NOTEBOOK = True
+# Use the GitHub URL instead of the local file path for more reliable loading
+# Setting to False will use the remote GitHub URL
+USE_LOCAL_NOTEBOOK = False

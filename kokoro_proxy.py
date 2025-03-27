@@ -43,7 +43,7 @@ except ImportError:
         MANUAL_LOGIN_TIMEOUT = 120
         PREFERRED_GPU = "T4"
         USE_HEADLESS_BROWSER = False
-        USE_LOCAL_NOTEBOOK = True
+        USE_LOCAL_NOTEBOOK = False
 
 # Configure logging
 logging.basicConfig(
@@ -57,11 +57,13 @@ logging.basicConfig(
 logger = logging.getLogger(__name__)
 
 # Configuration
-REMOTE_COLAB_URL = "https://colab.research.google.com/github/remsky/Kokoro-FastAPI-Colab/blob/main/launch_kokoro.ipynb"
-LOCAL_COLAB_URL = "file:///workspaces/Kokoro-FastAPI-Colab/launch_kokoro.ipynb"
+# Updated with the correct GitHub URL
+REMOTE_COLAB_URL = "https://colab.research.google.com/github/CY83R-3X71NC710N/Kokoro-FastAPI-Colab/blob/main/launch_kokoro.ipynb"
+RAW_GITHUB_URL = "https://raw.githubusercontent.com/CY83R-3X71NC710N/Kokoro-FastAPI-Colab/refs/heads/main/launch_kokoro.ipynb"
+LOCAL_NOTEBOOK_PATH = os.path.join(os.getcwd(), "launch_kokoro.ipynb")
 
 # Use local or remote URL based on configuration
-DEFAULT_COLAB_URL = LOCAL_COLAB_URL if hasattr(config, 'USE_LOCAL_NOTEBOOK') and config.USE_LOCAL_NOTEBOOK else REMOTE_COLAB_URL
+DEFAULT_COLAB_URL = REMOTE_COLAB_URL  # Always use the Colab URL for browser automation
 
 MAX_INSTANCE_AGE_HOURS = 8  # Max age of a Colab instance before creating a new one
 HISTORY_FILE = os.path.expanduser("~/.kokoro_proxy_history.json")
@@ -461,7 +463,10 @@ def launch_colab_automated(google_account_name=None):
             # For debugging, it's better to see the browser
             chrome_options.add_argument("--start-maximized")
         
-        driver = webdriver.Chrome(ChromeDriverManager().install(), options=chrome_options)
+        # Fix: Changed how we initialize WebDriver to avoid the options parameter error
+        driver_path = ChromeDriverManager().install()
+        driver = webdriver.Chrome(options=chrome_options)
+        
         wait = WebDriverWait(driver, 60)  # 1 minute timeout for operations
         
         # Create a new instance to track
