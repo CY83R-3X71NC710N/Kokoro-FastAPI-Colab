@@ -13,7 +13,7 @@ A ready-to-run Google Colab notebook for deploying Kokoro text-to-speech API wit
 
 Click the button below to open this project in Google Colab with T4 GPU acceleration:
 
-[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/CY83R-3X71NC710N/Kokoro-FastAPI-Colab/blob/main/launch_kokoro.ipynb?accelerator=gpu&colab=true)
+[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/CY83R-3X71NC710N/Kokoro-FastAPI-Colab/blob/main/launch_kokoro.ipynb)
 
 ## Usage
 
