@@ -26,6 +26,30 @@ Click the button below to open this project in Google Colab with T4 GPU accelera
 # Todo
 Use ngrok static domains
 
+## Guide for Creating a Free Custom Static Ngrok Domain, Creating a Free Account, and Getting the Auth Token
+
+### Step 1: Create a Free Ngrok Account
+1. Go to the [ngrok website](https://ngrok.com/).
+2. Click on the "Sign Up" button.
+3. Fill in the required information to create a free account.
+4. Verify your email address if required.
+
+### Step 2: Get Your Ngrok Auth Token
+1. Log in to your ngrok account.
+2. Go to the "Auth" section in the dashboard.
+3. Copy your auth token from the provided field.
+
+### Step 3: Create a Free Custom Static Ngrok Domain
+1. In the ngrok dashboard, go to the "Reserved" section.
+2. Click on "Reserve a Domain".
+3. Choose a subdomain name and reserve it.
+4. Your custom static ngrok domain will be something like `your-subdomain.ngrok.io`.
+
+### Step 4: Set Up Ngrok in the Notebook
+1. In the code cell at the top of this notebook, set the `NGROK_AUTH_TOKEN` variable to your auth token.
+2. Set the `NGROK_CUSTOM_DOMAIN` variable to your reserved custom domain (optional).
+3. Run the notebook to start the Kokoro FastAPI server with ngrok tunnel.
+
 ## License
 
 See the [LICENSE](LICENSE) file for details.
