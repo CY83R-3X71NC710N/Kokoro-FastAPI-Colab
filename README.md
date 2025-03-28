@@ -40,7 +40,7 @@ Use ngrok static domains
 3. Copy your auth token from the provided field.
 
 ### Step 3: Create a Free Custom Static Ngrok Domain
-1. In the ngrok dashboard, go to the "Domain" section. [ngrok domain](https://dashboard.ngrok.com/domains)
+1. In the ngrok dashboard, go to the "Domain" section. [ngrok domain section](https://dashboard.ngrok.com/domains)
 2. Click on "New Domain".
 3. Get the domain and copy it
 4. Your custom static ngrok domain will be something like `your-subdomain.ngrok.io`.
