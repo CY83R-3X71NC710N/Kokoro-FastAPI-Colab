@@ -23,13 +23,8 @@ Click the button below to open this project in Google Colab with T4 GPU accelera
 4. The notebook will set up Kokoro TTS and create a public URL via Cloudflare
 5. Use the generated URL in SillyTavern or other applications
 
-## Helper Terminal Program
-
-A helper script is included (`detect_cloudflare_url.py`) that can launch the Colab notebook and automatically extract the Cloudflare URL from the output. Run it with:
-
-```bash
-python detect_cloudflare_url.py
-```
+# Todo
+Use ngrok static domains
 
 ## License
 
